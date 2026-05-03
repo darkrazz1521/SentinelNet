@@ -1,0 +1,23 @@
+{
+  "raw_data_dir": "data/raw",
+  "interim_data_dir": "data/interim",
+  "logs_dir": "logs",
+  "output_filename": "combined.csv",
+  "report_filename": "combined_report.json",
+  "log_filename": "phase1_ingestion.log",
+  "chunk_size": 100000,
+  "encoding_candidates": [
+    "utf-8-sig",
+    "utf-8",
+    "cp1252",
+    "latin-1"
+  ],
+  "delimiter_candidates": [
+    ",",
+    ";",
+    "\t",
+    "|"
+  ],
+  "log_level": "INFO"
+}
+

@@ -1,0 +1,48 @@
+{
+  "input_data_path": "data/interim/combined.csv",
+  "interim_data_dir": "data/interim",
+  "logs_dir": "logs",
+  "output_filename": "cleaned.csv",
+  "report_filename": "cleaned_report.json",
+  "log_filename": "phase2_cleaning.log",
+  "chunk_size": 100000,
+  "label_column": "label",
+  "source_file_column": "source_file",
+  "critical_columns": [
+    "label",
+    "source_file",
+    "destination_port",
+    "flow_duration",
+    "total_fwd_packets",
+    "total_backward_packets"
+  ],
+  "deduplication_excluded_columns": [
+    "source_file"
+  ],
+  "zero_fill_suffixes": [
+    "_per_s",
+    "_ratio",
+    "_rate"
+  ],
+  "label_aliases": {
+    "benign": "BENIGN",
+    "bot": "Bot",
+    "ddos": "DDoS",
+    "dos goldeneye": "DoS GoldenEye",
+    "dos hulk": "DoS Hulk",
+    "dos slowhttptest": "DoS Slowhttptest",
+    "dos slowloris": "DoS slowloris",
+    "ftp patator": "FTP-Patator",
+    "ftp-patator": "FTP-Patator",
+    "heartbleed": "Heartbleed",
+    "infiltration": "Infiltration",
+    "portscan": "PortScan",
+    "ssh patator": "SSH-Patator",
+    "ssh-patator": "SSH-Patator",
+    "web attack brute force": "Web Attack - Brute Force",
+    "web attack sql injection": "Web Attack - Sql Injection",
+    "web attack xss": "Web Attack - XSS"
+  },
+  "log_level": "INFO"
+}
+

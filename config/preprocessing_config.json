@@ -1,0 +1,39 @@
+{
+  "input_data_path": "data/processed/labeled_dataset.csv",
+  "output_dir": "data/processed/preprocessed",
+  "logs_dir": "logs",
+  "preprocessor_filename": "preprocessor.joblib",
+  "feature_manifest_filename": "feature_manifest.json",
+  "report_filename": "preprocessing_report.json",
+  "log_filename": "phase4_preprocessing.log",
+  "chunk_size": 100000,
+  "test_size": 0.2,
+  "random_state": 42,
+  "label_column": "label",
+  "source_file_column": "source_file",
+  "binary_target_column": "label_binary",
+  "multiclass_target_column": "label_multiclass",
+  "include_source_file_feature": false,
+  "excluded_feature_columns": [
+    "label",
+    "label_binary",
+    "label_multiclass"
+  ],
+  "metadata_columns": [
+    "label",
+    "source_file",
+    "label_binary",
+    "label_multiclass"
+  ],
+  "binary_resampling_method": "adasyn",
+  "binary_majority_cap": 500000,
+  "binary_target_ratio": 1.0,
+  "multiclass_resampling_method": "smote",
+  "multiclass_benign_cap": 500000,
+  "multiclass_attack_cap": 100000,
+  "multiclass_min_target_count": 20000,
+  "knn_neighbors": 5,
+  "output_dtype": "float32",
+  "log_level": "INFO"
+}
+

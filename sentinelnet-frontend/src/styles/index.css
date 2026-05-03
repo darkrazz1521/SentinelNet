@@ -1,0 +1,167 @@
+@import "tailwindcss";
+
+:root {
+  color: #e2e8f0;
+  background: #0B0F17;
+  font-family:
+    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background:
+    linear-gradient(rgba(56, 189, 248, 0.032) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(56, 189, 248, 0.032) 1px, transparent 1px),
+    radial-gradient(circle at 20% 0%, rgba(56, 189, 248, 0.11), transparent 28rem),
+    radial-gradient(circle at 82% 8%, rgba(239, 68, 68, 0.08), transparent 26rem),
+    #0B0F17;
+  background-size: 44px 44px, 44px 44px, auto, auto, auto;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+::selection {
+  background: rgba(56, 189, 248, 0.35);
+  color: white;
+}
+
+::-webkit-scrollbar {
+  height: 10px;
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0f172a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #334155;
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #475569;
+}
+
+@layer components {
+  .glass-panel {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(148, 163, 184, 0.14);
+    border-radius: 8px;
+    background:
+      linear-gradient(135deg, rgba(17, 24, 39, 0.88), rgba(15, 23, 42, 0.72)),
+      rgba(17, 24, 39, 0.86);
+    box-shadow:
+      0 24px 80px rgba(0, 0, 0, 0.28),
+      inset 0 1px 0 rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(18px);
+  }
+
+  .glass-panel::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      linear-gradient(90deg, rgba(56, 189, 248, 0.16), transparent 28%),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.035), transparent 42%);
+    opacity: 0.8;
+  }
+
+  .glass-panel > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .icon-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    border: 1px solid rgba(56, 189, 248, 0.28);
+    border-radius: 6px;
+    background: rgba(56, 189, 248, 0.1);
+    color: #bae6fd;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+  }
+
+  .icon-button:hover {
+    transform: translateY(-1px);
+    border-color: rgba(56, 189, 248, 0.55);
+    background: rgba(56, 189, 248, 0.16);
+  }
+
+  .icon-button:disabled {
+    cursor: not-allowed;
+    opacity: 0.45;
+    transform: none;
+  }
+
+  .control-field {
+    display: grid;
+    gap: 0.45rem;
+  }
+
+  .control-field span {
+    color: #94a3b8;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .control-field select,
+  .control-field input {
+    min-height: 2.65rem;
+    width: 100%;
+    border: 1px solid rgba(51, 65, 85, 0.9);
+    border-radius: 6px;
+    background: rgba(2, 6, 23, 0.68);
+    color: #dbeafe;
+    outline: none;
+    padding: 0.55rem 0.7rem;
+    transition: border-color 160ms ease, box-shadow 160ms ease;
+  }
+
+  .control-field select:focus,
+  .control-field input:focus {
+    border-color: rgba(56, 189, 248, 0.62);
+    box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.12);
+  }
+}
+
+@theme {
+  --animate-threatPulse: threatPulse 1.4s ease-in-out infinite;
+
+  @keyframes threatPulse {
+    0%, 100% {
+      box-shadow: inset 3px 0 0 rgba(239, 68, 68, 0.8), 0 0 0 rgba(239, 68, 68, 0);
+    }
+    50% {
+      box-shadow: inset 3px 0 0 rgba(239, 68, 68, 1), 0 0 26px rgba(239, 68, 68, 0.16);
+    }
+  }
+}

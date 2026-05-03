@@ -1,0 +1,20 @@
+{
+  "input_predictions_path": "data/streaming/stream_predictions.csv",
+  "streaming_report_path": "data/streaming/streaming_report.json",
+  "output_dir": "data/streaming",
+  "logs_dir": "logs",
+  "enriched_predictions_filename": "stream_predictions_with_alerts.csv",
+  "alerts_filename": "alerts.csv",
+  "report_filename": "alerting_report.json",
+  "log_filename": "phase12_alerting.log",
+  "chunk_size": 50000,
+  "max_rows": null,
+  "suspicious_threshold": 40.0,
+  "attack_threshold": 70.0,
+  "binary_probability_weight": 0.55,
+  "attack_severity_weight": 0.20,
+  "class_confidence_weight": 0.15,
+  "disagreement_weight": 0.10,
+  "emit_normal_events": false,
+  "log_level": "INFO"
+}

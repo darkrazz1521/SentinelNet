@@ -1,0 +1,16 @@
+{
+  "streaming_dir": "data/streaming",
+  "explainability_dir": "models/saved_models/phase10_explainability",
+  "phase9_output_dir": "models/saved_models/phase9_ensemble",
+  "streaming_report_path": "data/streaming/streaming_report.json",
+  "alerting_report_path": "data/streaming/alerting_report.json",
+  "predictions_path": "data/streaming/stream_predictions.csv",
+  "enriched_predictions_path": "data/streaming/stream_predictions_with_alerts.csv",
+  "alerts_path": "data/streaming/alerts.csv",
+  "phase9_metrics_path": "models/saved_models/phase9_ensemble/metrics_summary.csv",
+  "binary_shap_summary_path": "models/saved_models/phase10_explainability/phase6/shap_values/binary_lightgbm_summary.csv",
+  "multiclass_shap_summary_path": "models/saved_models/phase10_explainability/phase6/shap_values/multiclass_random_forest_summary.csv",
+  "binary_ensemble_summary_path": "models/saved_models/phase10_explainability/phase9/binary_weighted_scoring_summary.csv",
+  "multiclass_ensemble_summary_path": "models/saved_models/phase10_explainability/phase9/multiclass_stacking_summary.csv",
+  "chunk_size": 50000
+}

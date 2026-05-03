@@ -1,0 +1,36 @@
+{
+  "input_data_path": "data/processed/labeled_dataset.csv",
+  "output_dir": "data/processed/feature_engineered",
+  "logs_dir": "logs",
+  "engineered_output_filename": "engineered_dataset.csv",
+  "selected_output_filename": "selected_dataset.csv",
+  "report_filename": "feature_engineering_report.json",
+  "feature_manifest_filename": "selected_feature_manifest.json",
+  "selection_report_filename": "feature_selection_report.json",
+  "mi_scores_filename": "mutual_information_scores.csv",
+  "pca_filename": "pca.joblib",
+  "train_indices_filename": "train_indices.npy",
+  "test_indices_filename": "test_indices.npy",
+  "log_filename": "phase5_feature_engineering.log",
+  "chunk_size": 100000,
+  "test_size": 0.2,
+  "random_state": 42,
+  "label_column": "label",
+  "source_file_column": "source_file",
+  "binary_target_column": "label_binary",
+  "multiclass_target_column": "label_multiclass",
+  "rolling_windows": [
+    5,
+    20
+  ],
+  "short_flow_duration_threshold": 1000000.0,
+  "correlation_threshold": 0.98,
+  "selection_sample_size": 200000,
+  "rfe_sample_size": 50000,
+  "mutual_information_top_k": 60,
+  "rfe_n_features_to_select": 30,
+  "pca_enabled": true,
+  "pca_variance_threshold": 0.95,
+  "log_level": "INFO"
+}
+

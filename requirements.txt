@@ -1,0 +1,18 @@
+# Phase 1 baseline dependencies
+numpy>=1.26
+pandas>=2.2
+pyarrow>=16.0
+pytest>=8.2
+scikit-learn>=1.5
+xgboost>=2.1
+lightgbm>=4.5
+tensorflow>=2.20
+streamlit>=1.36
+fastapi>=0.115
+uvicorn[standard]>=0.30
+
+# The following runtime dependencies are introduced in later phases.
+# imbalanced-learn>=0.12
+# The Phase 10 explainability pipeline includes an internal Monte Carlo SHAP-style
+# implementation, so the external `shap` package is optional rather than required.
+# shap>=0.46

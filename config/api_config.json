@@ -1,0 +1,19 @@
+{
+  "streaming_config_path": "config/streaming_config.json",
+  "alerting_config_path": "config/alerting_config.json",
+  "dashboard_config_path": "config/dashboard_config.json",
+  "logs_dir": "logs",
+  "log_filename": "phase14_api.log",
+  "host": "0.0.0.0",
+  "port": 8000,
+  "title": "SentinelNet v2 API",
+  "version": "0.14.0",
+  "default_alert_limit": 1000,
+  "default_stream_limit": 1000,
+  "max_page_size": 1000,
+  "metrics_recent_rows": 20,
+  "metrics_explanation_top_n": 10,
+  "metrics_multiclass_top_k": 8,
+  "preload_predictor_on_startup": true,
+  "log_level": "INFO"
+}

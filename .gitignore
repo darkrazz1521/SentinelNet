@@ -1,0 +1,41 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Environments
+.venv/
+venv/
+env/
+
+# Logs
+logs/*.log
+logs/*.json
+
+# Data (CRITICAL FIX)
+data/
+*.csv
+*.pcap
+
+# Models
+models/
+*.pkl
+*.joblib
+*.h5
+
+# Cache & Testing
+.pytest_cache/
+.tmp_tests/
+.mypy_cache/
+.ruff_cache/
+
+# Coverage
+.coverage
+htmlcov/
+
+# Frontend
+node_modules/
+dist/
+
+# Env files
+.env

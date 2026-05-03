@@ -1,0 +1,284 @@
+SentinelNet v2 Project Report
+Generated: 2026-04-30
+Project Root: C:\Users\siddh\ML_projects\sent
+
+1. Executive Summary
+
+SentinelNet v2 is a production-oriented AI-powered Network Intrusion Detection System built on the CICIDS2017 dataset. The project has been implemented phase-by-phase from raw multi-file ingestion through model training, anomaly detection, ensemble inference, explainability, real-time replay, alerting, dashboarding, API deployment, performance optimization, and advanced response automation.
+
+The repository now contains executable pipelines for all 16 requested phases, persistent artifacts for every major stage, operational logs, unit and integration tests, a Streamlit dashboard, a FastAPI service layer, a production React SOC frontend, performance-tuned serving defaults, and a Phase 16 advanced response layer for zero-day candidate triage, simulated auto-blocking, feature-drift monitoring, and continuous learning.
+
+2. Project Objective
+
+The project objective was to build a modular and deployable AI-powered Network Intrusion Detection System that can:
+
+- Process multiple CICIDS2017 CSV files reliably
+- Detect malicious traffic in real time
+- Classify known attack types
+- Surface zero-day anomaly candidates
+- Generate operational alerts with risk scores
+- Explain predictions and model behavior
+- Replay traffic as a real-time simulation
+- Expose serving and monitoring interfaces for deployment
+- Provide a professional SOC web dashboard connected to the FastAPI backend
+
+3. Dataset and Data Engineering Summary
+
+Dataset location:
+- data/raw/
+
+Primary dataset family:
+- CICIDS2017 multi-file CSV corpus
+
+Implemented data engineering stages:
+- Phase 1: memory-aware multi-file ingestion, schema validation, column alignment, combined dataset generation
+- Phase 2: data cleaning, duplicate removal, infinity handling, missing value remediation, label normalization
+- Phase 3: label engineering for binary and multiclass targets
+- Phase 4: preprocessing, scaling, train/test split, class balancing
+- Phase 5: feature engineering, statistical and behavioral features, time-window features, domain-driven attack features, feature selection
+
+Core processed artifacts:
+- data/interim/combined.csv
+- data/interim/cleaned.csv
+- data/processed/labeled_dataset.csv
+- data/processed/feature_engineered/selected_dataset.csv
+
+4. Model and Detection Stack
+
+Phase 6 classical ML:
+- Logistic Regression
+- Random Forest
+- XGBoost
+- LightGBM
+
+Phase 7 deep learning:
+- DNN
+- LSTM
+- Autoencoder
+
+Phase 8 anomaly detection:
+- Isolation Forest
+- One-Class SVM
+- Local Outlier Factor
+- Autoencoder reconstruction scoring
+
+Phase 9 ensemble system:
+- Soft voting
+- Weighted scoring
+- Stacking
+
+Phase 10 explainability:
+- Phase 6 feature importance
+- Monte Carlo SHAP-style attribution summaries
+- Ensemble component contribution summaries
+
+5. Deployment and Operations Stack
+
+Phase 11:
+- Real-time simulation over the selected CICIDS2017 split
+- Stateful LSTM inference across the event stream
+
+Phase 12:
+- Severity-aware risk scoring
+- Alert enrichment
+- Persisted operational alert logs
+
+Phase 13:
+- Streamlit dashboard for live predictions, distributions, confusion matrices, ROC views, and explainability
+
+Phase 14:
+- FastAPI endpoints: /predict, /stream, /alerts, /metrics, /health
+- Pydantic request/response schemas in api/schemas.py
+- CORS-enabled local development integration for the React frontend
+
+React SOC frontend:
+- Vite + React + Tailwind CSS
+- Axios API service using a Vite /api proxy to the FastAPI backend
+- React Router pages for command center, live feed, alert center, model insights, system metrics, and inference lab
+- Recharts visualizations over backend metrics and alert distributions
+- Collapsible SOC sidebar, backend health status, stream filters, alert filters, and manual /predict validation UI
+
+Phase 15:
+- Predictor benchmarking
+- API request-path benchmarking
+- Metrics refresh vs cache benchmarking
+- Tuned serving recommendations
+
+Phase 16:
+- Operational attack-family classification
+- Zero-day candidate detection from anomaly consensus and classifier disagreement
+- Simulated auto-block decisions with repeat-offender tracking
+- Feature drift summary against the training baseline
+- Continuous-learning queue generation
+- Retraining recommendation manifest
+
+6. Current Real Artifact Status
+
+Phase 11 real replay:
+- Streamed rows: 504,472
+- Binary deployment variant: weighted_scoring
+- Multiclass deployment variant: stacking
+
+Phase 12 real alerting:
+- Alert rows written: 85,089
+- Level distribution: 419,383 Normal, 21,864 Suspicious, 63,225 Attack
+
+Latest Phase 15 real rerun:
+- Benchmark rows: 2,048
+- Feature count: 30
+- Predictor load time: 10.54 s
+- API predictor warmup time: 7.28 s
+- Recommended streaming inference_batch_size: 256
+- Recommended API predict batch size: 8
+- Recommended /stream and /alerts page size: 1000
+- Metrics refresh latency: 4477.18 ms
+- Metrics cached latency: 0.47 ms
+- Metrics cache speedup: 9487.56x
+
+Current active Phase 15-aligned defaults:
+- config/streaming_config.json -> inference_batch_size=256
+- config/api_config.json -> default_stream_limit=1000
+- config/api_config.json -> default_alert_limit=1000
+- config/api_config.json -> preload_predictor_on_startup=true
+
+Phase 14 /predict schema status:
+- The /predict schema already exists in api/schemas.py.
+- Request models: PredictRequest and PredictRecord.
+- Response models: PredictResponse and PredictionRecordResponse.
+- Alert level type: Literal["Normal", "Suspicious", "Attack"].
+- Each PredictRequest contains 1 to 2048 records.
+- Each PredictRecord contains source_file, optional event_time_utc, and a features dictionary.
+- Pydantic rejects unknown top-level request fields.
+- The service layer additionally requires all 30 selected deployment features from data/processed/feature_engineered/selected_feature_manifest.json.
+- Missing selected features return HTTP 422 before inference.
+
+Required /predict selected features:
+- packet_length_variance
+- bwd_packet_length_mean
+- total_length_of_fwd_packets
+- bwd_packet_length_max
+- init_win_bytes_backward
+- max_packet_length
+- fwd_packet_length_max
+- flow_iat_max
+- fwd_header_length
+- flow_duration
+- fwd_packet_length_mean
+- fwd_iat_mean
+- destination_port
+- flow_bytes_per_s
+- flow_iat_mean
+- fwd_iat_std
+- flow_iat_std
+- fwd_packet_length_std
+- rolling_unique_destination_ports_w20
+- bwd_iat_max
+- forward_payload_efficiency
+- bwd_iat_total
+- bwd_iat_mean
+- total_fwd_packets
+- burstiness_score
+- active_mean
+- active_min
+- bwd_iat_min
+- min_packet_length
+- flow_iat_min
+
+Phase 16 real run:
+- Rows processed: 504,472
+- Selected feature count: 30
+- Drift reference rows: 100,000
+- Zero-day candidate rows: 0
+- Simulated auto-block rows: 0
+- Continuous-learning queue rows retained: 5,000
+- Drifted feature count: 1
+- Average novelty score: 9.7966
+- Retraining recommended: true
+- Retraining trigger: continuous_learning_queue_rows>=1500
+
+Dominant Phase 16 classified traffic families:
+- Normal Traffic
+- Availability Disruption
+- Reconnaissance
+
+7. Key Artifact Directories
+
+Data and replay artifacts:
+- data/interim/
+- data/processed/
+- data/streaming/
+- data/streaming/phase16_advanced/
+
+Model and explanation artifacts:
+- models/saved_models/phase6_ml/
+- models/saved_models/phase7_deep_learning/
+- models/saved_models/phase8_anomaly_detection/
+- models/saved_models/phase9_ensemble/
+- models/saved_models/phase10_explainability/
+- models/saved_models/phase15_performance/
+
+Operational interfaces:
+- dashboard/streamlit_app.py
+- api/fastapi_app.py
+- sentinelnet-frontend/
+
+FastAPI endpoint coverage in the React frontend:
+- /health drives the topbar backend status.
+- /metrics drives command-center KPIs, model insights, explainability panels, and system metrics.
+- /stream drives the live feed with limit, offset, alerts_only, and alert_level controls.
+- /alerts drives the alert center with limit, offset, alert_level, and min_risk_score controls.
+- /predict is available from the inference lab and forwards backend validation errors to the operator.
+
+8. Test Status
+
+Historically validated phases:
+- The Phase 1 to Phase 15 test suite was previously executed successfully by the user environment.
+
+Current Phase 16 validation:
+- tests/test_phase16_pipeline.py passed successfully after implementation.
+
+Frontend validation:
+- The React frontend production build passes with npm run build.
+- Vite /api proxy checks were verified for /health, /stream, and filtered /alerts.
+
+Important note:
+- A broader regression command covering tests/test_streaming_pipeline.py, tests/test_api_pipeline.py, tests/test_performance_pipeline.py, and tests/test_phase16_pipeline.py was started during implementation but later interrupted by the user. It should be rerun if a fresh all-in-one post-Phase-16 verification snapshot is required.
+
+9. Known Warnings and Runtime Notes
+
+The following warnings have appeared during real runs and are currently non-blocking:
+
+- scikit-learn model-version mismatch warnings when loading older serialized estimators with a newer library version
+- XGBoost serialized-model compatibility warnings for older artifact formats
+- TensorFlow retracing warnings during repeated prediction calls
+- Native Windows TensorFlow GPU warning for TensorFlow >= 2.11; CPU execution is expected unless using WSL2 or TensorFlow-DirectML
+- Browser/dev-server polling can create many GET /stream log lines when multiple frontend tabs are open
+
+These warnings do not indicate pipeline failure, but they should be cleaned up for long-term maintainability by standardizing the serialization toolchain and retraining or re-exporting older artifacts where practical.
+
+10. Operational Recommendations
+
+Short-term:
+- Rerun the compact post-Phase-16 regression set:
+  tests/test_streaming_pipeline.py
+  tests/test_api_pipeline.py
+  tests/test_performance_pipeline.py
+  tests/test_phase16_pipeline.py
+- Keep the Phase 15 serving defaults aligned with the latest benchmark output
+- Review the top 5,000 continuous-learning queue items for analyst labeling
+- Use complete 30-feature payloads when validating /predict manually from the frontend inference lab
+
+Medium-term:
+- Re-export or retrain persisted scikit-learn and XGBoost artifacts under the current environment versions
+- Investigate TensorFlow retracing reduction for repeated scoring paths
+- Tune Phase 16 zero-day thresholds if the operational goal is to surface more aggressive novelty candidates
+
+Long-term:
+- Integrate analyst-reviewed Phase 16 queue outputs into an automated retraining workflow
+- Extend the dashboard and API to expose Phase 16 zero-day, drift, and retraining signals directly
+- Add CI-driven end-to-end regression checks for the full artifact chain
+- Add a documented sample generator that converts a stream row into a valid /predict payload for repeatable API demos
+
+11. Conclusion
+
+SentinelNet v2 has reached a fully implemented multi-phase state across ingestion, cleaning, feature engineering, machine learning, deep learning, anomaly detection, ensemble serving, explainability, replay simulation, alerting, dashboarding, API deployment, React SOC frontend delivery, performance tuning, and advanced operational response. The repository is now suitable as a serious end-to-end NIDS engineering project with reproducible pipelines, persisted artifacts, and deployable interfaces.
